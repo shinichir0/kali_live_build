@@ -1,0 +1,2 @@
+service bluetooth start
+update-rc.d bluetooth defaults
