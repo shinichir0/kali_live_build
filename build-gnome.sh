@@ -25,3 +25,9 @@ cp cfg/gnome/kali.list.chroot build/kali-config/variant-gnome/package-lists/
 echo "start build===================================================="
 cd build
 ./build.sh --distribution kali-rolling --variant gnome --verbose
+
+echo "move iso======================================================="
+mkdir ${SCRIPT_DIR}/images
+mv ${SCRIPT_DIR}/build/images/* ${SCRIPT_DIR}/images/
+cd ${SCRIPT_DIR}
+rm -rf build
