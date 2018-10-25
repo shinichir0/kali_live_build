@@ -1,7 +1,6 @@
 #!/bin/bash
 
 echo "install requirement============================================"
-cd /root
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
@@ -11,16 +10,17 @@ apt-get update
 apt-get install -y curl git live-build
 
 echo "cloning repository============================================="
+cd `dirname $0`
 git clone git://git.kali.org/live-build-config.git build
-cd build
 
 echo "copy config files=============================================="
-cp /root/kali_live_build/cfg/isolinux.cfg /root/build/kali-config/common/includes.binary/isolinux/
-cp /root/kali_live_build/cfg/menu.cfg /root/build/kali-config/common/includes.binary/isolinux/
-cp /root/kali_live_build/cfg/live.cfg /root/build/kali-config/common/includes.binary/isolinux/
-cp /root/kali_live_build/cfg/zsh.chroot /root/build/kali-config/common/hooks/live/
-cp /root/kali_live_build/cfg/0031-root-password /root/build/kali-config/common/includes.chroot/usr/lib/live/config/
-cp /root/kali_live_build/cfg/gnome/kali.list.chroot /root/build/kali-config/variant-gnome/package-lists/
+cp cfg/isolinux.cfg build/kali-config/common/includes.binary/isolinux/
+cp cfg/menu.cfg build/kali-config/common/includes.binary/isolinux/
+cp cfg/live.cfg build/kali-config/common/includes.binary/isolinux/
+cp cfg/zsh.chroot build/kali-config/common/hooks/live/
+cp cfg/0031-root-password build/kali-config/common/includes.chroot/usr/lib/live/config/
+cp cfg/gnome/kali.list.chroot build/kali-config/variant-gnome/package-lists/
 
 echo "start build===================================================="
+cd build
 ./build.sh --distribution kali-rolling --variant gnome --verbose
