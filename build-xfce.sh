@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
 echo "install requirement============================================"
 apt-get update
 apt-get upgrade -y
@@ -10,7 +11,7 @@ apt-get update
 apt-get install -y curl git live-build
 
 echo "cloning repository============================================="
-cd `dirname $0`
+cd ${SCRIPT_DIR}
 git clone git://git.kali.org/live-build-config.git build
 
 echo "copy config files=============================================="
